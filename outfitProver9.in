@@ -1,0 +1,168 @@
+% Saved by Prover9-Mace4 Version 0.5B, March 2008 (Dec 2007 LADR).
+
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(max_seconds, 120).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(max_seconds, 360).
+end_if.
+
+formulas(assumptions).
+
+%   SUBCLASS AXIOMS
+%--------------------------------
+
+% If something is male it is a gender
+(all x (male(x) -> gender(x))).
+
+% If something is female it is a gender
+(all x (female(x) -> gender(x))).
+
+%   DEFINITIONS
+%--------------------------------
+
+% Women's garments are garments targeted to females 
+(all x all y 
+(womensGarment(x) 
+<-> 
+(garment(x) & female(z) & targeted_to(x,y)))). 
+
+% Men's garments are garments targeted to males
+(all x all y 
+(mensGarment(x) 
+<-> 
+(garment(x) & male(y) & targeted_to(x,y)))). 
+
+% Men's garments are not women's garments
+(all x (mensGarment(x) <-> -womensGarments(x))).
+
+% A formal outfit is an outfit that conform to a formal dress code
+(all x all y 
+(formalOutfit(x))
+<->
+(outfit(x) & formal(y) & conforms(x,y))).
+
+% A semi-formal outfit is an outfit that conform to a semi-formal dress code
+(all x all y 
+(semiFormalOutfit(x))
+<->
+(outfit(x) & semiFormal(y) & conforms(x,y))).
+
+% An informal outfit is an outfit that conform to a informal dress code
+(all x all y 
+(informalOutfit(x))
+<->
+(outfit(x) & informal(y) & conforms(x,y))).
+
+%   DISJOINTNESS AXIOMS
+%---------------------------------
+
+% If something is targeted to a male it is not targeted to a female
+% (all x all y all z (male(x) & female(y) & targeted_to(z,x) -> -targeted_to(f)
+
+%   SORT CONSTRAINTS
+%--------------------------------
+
+% Garments are dyed colors
+(all x all y (suggest(x,y))->(event(x) & dressCode(y))).
+
+% Events suggest dress codes
+(all x all y (suggest(x,y))->(event(x) & dressCode(y))).
+
+% Outfits conform to dress codes
+(all x all y (conforms(x,y))->(outfit(x) & dressCode(y))).
+
+% Outfits are suitable for events
+(all x all y (suitable(x,y))->(outfit(x) & event(y))).
+
+% Dress codes govern outfits
+(all x all y (governs(x,y))->(dressCode(x) & outfit(y))).
+
+% Events permit outfits
+(all x all y (permits(x,y))->(event(x) & outfit(y))).
+
+% Garments are a component of outfits
+(all x all y (component_of(x,y))->(garment(x) & outfit(y))).
+
+% Outfits include garments
+(all x all y (include(x,y))->(outfit(x) & garment(y))).
+
+% Outfits are worn by genders
+(all x all y (worn_by(x,y))->(outfit(x) & gender(y))).
+
+% Garments are targeted to genders
+(all x all y (targeted_to(x,y))->(garment(x) & gender(y))).
+
+% Garments are worn over garments
+(all x all y (worn_over(x,y))->(garment(x) & garment(y))).
+
+% Garments are worn under garments
+(all x all y (worn_under(x,y))->(garment(x) & garment(y))).
+
+% Garments cover body segments
+(all x all y (cover(x,y))->(garment(x) & bodySegment(y))).
+
+% Body segments are covered by garments
+(all x all y (worn_over(x,y))->(garment(x) & garment(y))).
+
+%   UNIQUENESS (i.e. FUNCTIONAL PROPERTY)
+%----------------------------------------
+
+%  An outfit can only cover a body segment with one garment
+%(all x all y all z
+%(covers(x,z) & covers(y,z))
+%->
+%(x=y))
+
+%   PROPERTIES OF RELATIONS
+%----------------------------------------
+
+%   Inverse Relation
+%- - - - - - - - - - - - - - - - - - - - - - - - 
+(all x all y (include(x,y) <-> components_of(y,x))).
+(all x all y (permits(x,y) <-> suitable(y,x))).
+(all x all y (governs(x,y) <-> components_of(y,x))).
+(all x all y (worn_over(x,y) <-> worn_under(y,x))).
+(all x all y (covers(x,y) <-> covered_by(y,x))).
+
+%   SubProperty of Relation Chain
+%- - - - - - - - - - - - - - - -  - - - - - - 
+
+% If an event suggest a dress code and that dress code governs a set of 
+% outfits than that event permits those outfits.
+(all x all y all z 
+(suggest(x,y) & governs(y,z))
+->
+(permits(x,z))).
+
+% All components of an outfit that is worn by a gender are targeted to that gender
+(all x all y all z 
+(components_of(x,y) & worn_by(y,z))
+->
+(targeted_to(x,z))). 
+
+%   Transitive Relations
+%- - - - - - - - - - - - - - - -  - - - - - - 
+
+% If a garment A is worn over garment B and garment B is worn over garment C then garment A 
+% is worn over garment C
+
+(all x all y all z
+(worn_over(x,y) & worn_over(y,z))
+->
+worn_over(x,z)).
+
+end_of_list.
+
+formulas(goals).
+
+(exists w exists x exists y exists z 
+(eveningGown(w) & theatreOpeningNight(x) & female(y) & garment_of(w,z))
+->
+(has_genderDes(x,y) & is_eventAppropriate(z,x))).
+
+end_of_list.
+
