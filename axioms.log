@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  20 MAR 2014 17:34
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  20 MAR 2014 17:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -336,7 +336,7 @@ File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 ] [7
 
 ]
-Overfull \hbox (39.71202pt too wide) detected at line 518
+Overfull \hbox (39.71202pt too wide) detected at line 513
 \OMS/cmsy/m/n/10.95 8\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x; y; z\OT1/cmr/m/
 n/10.95 ) (\OML/cmm/m/it/10.95 type\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT
 1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 outfit\OT1/cmr/m/n/
@@ -351,7 +351,7 @@ m/m/it/10.95 w garment\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 w\OT1/cmr/m/n/10.
  []
 
 
-Overfull \hbox (24.00179pt too wide) detected at line 523
+Overfull \hbox (24.00179pt too wide) detected at line 518
 \OMS/cmsy/m/n/10.95 8\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 w; x; y; z\OT1/cmr
 /m/n/10.95 ) (\OML/cmm/m/it/10.95 garment\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.9
 5 w\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 outfit\OT1/cm
@@ -364,10 +364,8 @@ OMS/cmsy/m/n/10.95 ^^[ \OML/cmm/m/it/10.95 garmentOf\OT1/cmr/m/n/10.95 (\OML/cm
 m/m/it/10.95 z; x\OT1/cmr/m/n/10.95 ))
  []
 
-[8
 
-]
-Overfull \hbox (4.21674pt too wide) detected at line 543
+Overfull \hbox (4.21674pt too wide) detected at line 529
 \OMS/cmsy/m/n/10.95 8\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x; y; z\OT1/cmr/m/
 n/10.95 ) (\OML/cmm/m/it/10.95 garment\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x
 \OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 garment\OT1/cmr/
@@ -380,7 +378,9 @@ L/cmm/m/it/10.95 x; z\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/1
 /10.95 = \OML/cmm/m/it/10.95 y\OT1/cmr/m/n/10.95 ))
  []
 
-[9] [10] (./axioms.aux) ) 
+[8
+
+] [9] [10] (./axioms.aux) ) 
 Here is how much of TeX's memory you used:
  4267 strings out of 493315
  60533 string characters out of 6137904
@@ -389,18 +389,18 @@ Here is how much of TeX's memory you used:
  19090 words of font info for 47 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  35i,17n,47p,235b,493s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/cm
--super/cm-super-t1.enc}</usr/local/texlive/2013/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-su
-per/sfcc1095.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-supe
-r/sfcc1200.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/
-sfcc1440.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sf
-rm0600.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm
-1095.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sftt10
-95.pfb>
-Output written on axioms.pdf (10 pages, 152031 bytes).
+{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/
+cm-super/cm-super-t1.enc}</usr/local/texlive/2013/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-
+super/sfcc1095.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-su
+per/sfcc1200.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-supe
+r/sfcc1440.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/
+sfrm0600.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sf
+rm1095.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sftt
+1095.pfb>
+Output written on axioms.pdf (10 pages, 151370 bytes).
 PDF statistics:
  74 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream

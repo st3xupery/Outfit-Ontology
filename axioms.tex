@@ -122,7 +122,6 @@
 \clearpage
 
 \section{Axioms}
-
 \subsection{Subclass Axioms}
 \begin{enumerate}
 
@@ -290,7 +289,7 @@
 	\forall x \forall y \; covers(x,y) \supset garment(x) \land bodySegment(y)
 \end{equation*}
 \begin{Verbatim}[gobble=2, numbers=left]
-	(all x all y (worn_over(x,y))->(garment(x) & garment(y))).
+	(all x all y (covers(x,y))->(garment(x) & bodySegment(y))).
 \end{Verbatim}
 
 	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -311,26 +310,28 @@
 \subsection{Dependence Axioms}
 \begin{enumerate}
 	
-	%Dependence 1
-	\item All outfits are composed of garments of clothing
+	\item All garments are a piece of an outfit
 	\begin{equation*}
 		\forall(x) \; outfit(x) \supset \exists y \; garment(y) \land garment\_of(y,x)
 	\end{equation*}
-	\begin{equation*}
-		\text{Garment} \sqsubseteq \exists \text{garment-of.Outfit}
-	\end{equation*}
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
 	\item All outfits have a garment that are worn over the torso
 	\begin{equation*}
 		\forall(x,y) \; (outfit(x) \land torso(y) \supset (\exists z \; garment(z) \land wornOver(z,y) \land garmentOf(z,x))) 
 	\end{equation*}
-
-	\item All outfits have an garment that cover the legs
+	
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
+	\item All outfits have a garment that cover the legs
 	\begin{equation*}
 		\forall(x,y) \; (outfit(x) \land legs(y) \supset (\exists z \; garment(z) \land wornOver(z,y) \land garmentOf(z,x)))) 
 	\end{equation*}
 
-	\item All outfits have an garment that cover the feet
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
+\item All outfits have a garment that cover the feet
 	\begin{equation*}
 		\forall(x,y) \; (outfit(x) \land feet(y) \supset (\exists z \; garment(z) \land wornOver(z,y) \land garmentOf(z,x)))) 
 	\end{equation*}
@@ -441,9 +442,7 @@
 	(all x all y (worn_over(x,y) <-> worn_under(y,x))).
 	(all x all y (covers(x,y) <-> covered_by(y,x))).
 	\end{Verbatim}	
-	
-	%END_SECTION - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	
+
 \subsubsection{SubProperty of Relation Chain}
 \begin{enumerate}
 	
@@ -518,15 +517,6 @@
 	\forall(w,x,y,z) \; (garment(w) \land outfit(x) \land garmentOf(x,y) \land type(z) \land of\_type(w,z) \supset garmentOf(z,x))
 \end{equation*}
 
-\item All garments of clothing must be of a type of clothing
-\begin{equation*}
-	\forall(x) \; (garment(x) \supset (\exists y \; type(y) \land of\_type(x,y)))
-\end{equation*}
-
-\item Nothing can be both an garment and a type of clothing
-\begin{equation*}
-	\forall(x) \; \lnot(garment(x) \land type(x)) 
-\end{equation*}
 
 \item No type of clothing can be a type of itself
 \begin{equation*}
