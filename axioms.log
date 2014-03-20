@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  20 MAR 2014 17:58
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  20 MAR 2014 18:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -400,7 +400,7 @@ r/sfcc1440.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/
 sfrm0600.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sf
 rm1095.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sftt
 1095.pfb>
-Output written on axioms.pdf (10 pages, 151370 bytes).
+Output written on axioms.pdf (10 pages, 151373 bytes).
 PDF statistics:
  74 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream
