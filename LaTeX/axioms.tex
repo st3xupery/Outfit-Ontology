@@ -68,10 +68,12 @@
 
 \begin{document}
 
+\section{Domain}
+Our ontology wishes to explore the domain of western dress codes and the way in which they govern outfits by imposing a set of rules on the items of clothing they include. 
+
 \section{Competency Questions}
 \begin{enumerate}
-	
-	%Competency Question 1
+
 	\item Is an evening gown part of an outfit that is appropriate for an opening night theatre performance if one is a female?
 	\begin{equation*}
 		\begin{split}
@@ -79,7 +81,6 @@
 		\land garment\_of(w,z) \supset has\_genderDes(w,z) \land eventAppropriate(z,y)
 		\end{split}
 	\end{equation*}
-
 	%Prover9
 	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
 		(all w all x all y all z 
@@ -87,10 +88,9 @@
 		->
 		(has_genderDes(x,y) & is_eventAppropriate(z,x))).
 	\end{Verbatim}
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
-	%--------------------------------------
-	
-	%Competency Question 2
 	\item Does a dress and shoes alone complete a business outfit?
 	\begin{equation*}
 		\begin{split}
@@ -98,7 +98,6 @@
 		outfit(z)
 		\end{split}
 	\end{equation*}
-	
 	%Prover9
 	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
 		(all x all y all z
@@ -106,17 +105,85 @@
 		->
 		(businessOutfit(z)).
 	\end{Verbatim}
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
-	%Competency Question 3
-	\item Does a jacket, pants and shoes comprise a complete outfit?
+	\item Does a jacket, pants and shoes comprise a complete mens outfit?
+	\begin{equation*}
+		\begin{split}
+		\forall x \forall y \forall z \; dress(x) \land pants(y) \land outfit(z) \land garment\_of(x,z) \land garment\_of(y,z) \supset \\ 
+		outfit(z)
+		\end{split}
+	\end{equation*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+		(all x all y all z
+		(dress(x) & shoes(y) & outfit(z) & garment_of(x,z) & garment_of(y,z))
+		->
+		(businessOutfit(z)).
+	\end{Verbatim}
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
-	%Competency Question 4
 	\item Is a three piece suit complete without a vest?
-	\item Can one wear a men's suit without a tie?
+	\begin{equation*}
+		\begin{split}
+		\forall x \forall y \forall z \; vest(x) \land \neg component\_of(x,y) \supset threePieceSuit(y)
+		\end{split}
+	\end{equation*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+		(all x all y
+		(vest(x) & -component_of(x,y))
+		->
+		(threePieceSuit(y)).
+	\end{Verbatim}
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
+	\item Can a man wear a men's suit without a tie?
+	
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
 	\item Must one where men's neck apparel to a semi-formal event?
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
 	\item Is a red colored suit considered formal wear?
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+		
 	\item Is a green ballroom gown suitable for a state dinner?
-	\item Is a ballroom gown suitable for a dinner party?
+	\begin{equation*}
+		\begin{split}
+		\forall x \forall y \forall z \; ballroomGown(x) \land green(c) \land dyed(x,c) \supset \\ 
+		suitable(y,z)
+		\end{split}
+	\end{equation*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+		(all x all y all z
+		(ballroomGown(x) & outfit(y) & dinnerParty(z) & garment_of(x,y)
+		->
+		(suitable(y,z)).
+	\end{Verbatim}
+	
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
+	\item Is an evening gown part of an outfit suitable for a dinner party?
+	\begin{equation*}
+		\begin{split}
+		\forall x \forall y \forall z \forall c \; eveningGown(x) \land dinnerParty(z) \land garment\_of(x,y) \supset \\
+		suitable(y,z)
+		\end{split}
+	\end{equation*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+		(all x all y all z
+		(eveningGown(x) & outfit(y) & dinnerParty(z) & garment_of(x,y)
+		->
+		(suitable(y,z)).
+	\end{Verbatim}
 	
 \end{enumerate}
 \clearpage
@@ -156,11 +223,11 @@
 \end{enumerate}
 \clearpage
 
-\subsection{Disjointness Axioms}
-\begin{enumerate}
-	\item
-\end{enumerate}
-\clearpage
+%\subsection{Disjointness Axioms}
+%\begin{enumerate}
+%	\item
+%\end{enumerate}
+%\clearpage
 
 \subsection{Sort Constraints}
 \begin{enumerate}
@@ -309,39 +376,92 @@
 
 \subsection{Dependence Axioms}
 \begin{enumerate}
-	
-	\item All garments are a piece of an outfit
-	\begin{equation*}
-		\forall(x) \; outfit(x) \supset \exists y \; garment(y) \land garment\_of(y,x)
-	\end{equation*}
 
 	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
-	\item All outfits have a garment that are worn over the torso
-	\begin{equation*}
-		\forall(x,y) \; (outfit(x) \land torso(y) \supset (\exists z \; garment(z) \land wornOver(z,y) \land garmentOf(z,x))) 
-	\end{equation*}
-	
-	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	
-	\item All outfits have a garment that cover the legs
-	\begin{equation*}
-		\forall(x,y) \; (outfit(x) \land legs(y) \supset (\exists z \; garment(z) \land wornOver(z,y) \land garmentOf(z,x)))) 
-	\end{equation*}
+	\item All outfits include a garment that is worn over the torso and is not an accompaniment garment
+		\begin{multline*}
+		\forall(x,y) \; (outfit(x) \land torso(y) \supset (\exists z \; garment(z) \\
+		\land worn\_over(z,y) \land component\_of(z,x) \land \neg accompanimentGarment(z))) 
+		\end{multline*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+	 (all x all y 
+	 (outfit(x) & torso(y))
+	 -> 
+	 (exists z (garment(z) & worn_over(z,y) & component_of(z,x) 
+	 & -accompanimentGarment(z)))).
+	\end{Verbatim}
 
 	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
-\item All outfits have a garment that cover the feet
-	\begin{equation*}
-		\forall(x,y) \; (outfit(x) \land feet(y) \supset (\exists z \; garment(z) \land wornOver(z,y) \land garmentOf(z,x)))) 
-	\end{equation*}
+	\item All outfits include a garment that is worn over the legs and is not an accompaniment garment
+		\begin{multline*}
+		\forall(x,y) \; (outfit(x) \land legs(y) \supset (\exists z \; garment(z) \\
+		\land worn\_over(z,y) \land component\_of(z,x) \land \neg accompanimentGarment(z))) 
+		\end{multline*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+	 (all x all y 
+	 (outfit(x) & legs(y))
+	 -> 
+	 (exists z (garment(z) & worn_over(z,y) & component_of(z,x) 
+	 & -accompanimentGarment(z)))).
+	\end{Verbatim}
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
+	\item All outfits include a garment that is worn over the feet and is not an accompaniment garment
+		\begin{multline*}
+		\forall(x,y) \; (outfit(x) \land feet(y) \supset (\exists z \; garment(z) \\
+		\land worn\_over(z,y) \land component\_of(z,x) \land \neg accompanimentGarment(z))) 
+		\end{multline*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+	 (all x all y 
+	 (outfit(x) & feet(y))
+	 -> 
+	 (exists z (garment(z) & worn_over(z,y) & component_of(z,x) 
+	 & -accompanimentGarment(z)))).
+	\end{Verbatim}	
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
+	\item All mens suits consist of pants and a jacket of the same color
+		\begin{multline*}
+			\forall x \; mensSuit(x) \supset \exists y \exists z \exists c \; mensPants(y) \land mensJacket(z) 
+			\\ \land color(c) \land dyed(y,c) \land dyed(z,c)
+		\end{multline*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+	 (all x 
+	 (mensSuit(x)
+	 -> 
+	 (exists y exists z (mensPants(y) & mensJacket(z) & color(c) & dyed(y,c) 
+	 & dyed(z,c)))).
+	\end{Verbatim}	
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
+	\item All garments are dyed a color
+		\begin{equation*}
+			\forall x \; garment(x) \supset \exists c \; color(c) \land dyed(x,c) 
+		\end{equation*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+	 (all x 
+	 (garment(x)) 
+	 -> 
+	 (exists c (color(c) & dyed(x,c)))).
+	\end{Verbatim}	
 	
 \end{enumerate}
-
-\subsection{Cardinality}
-
-\subsection{Uniqueness}
 \clearpage
+
+%\subsection{Cardinality}
+
+%\subsection{Uniqueness}
+
 
 \subsection{Definitions}
 \begin{enumerate}
@@ -369,7 +489,49 @@
 	 (all x all y
 	 (mensGarment(x) 
 	 <-> 
-	 (garment(y) & male(z) & targeted_to(y,z)))). 
+	 (garment(x) & male(y) & targeted_to(x,y)))). 
+	\end{Verbatim}
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
+	\item Lower garments are garment worn over the legs 
+	\begin{equation*}
+		\forall x \forall y \; lowerGarment(x) \equiv garment(x) \land legs(y) \land worn\_over(x,y)
+	\end{equation*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+	 (all x all y
+	 (lowerGarment(x) 
+	 <-> 
+	 (garment(x) & legs(y) & worn_over(x,y)))). 
+	\end{Verbatim}
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
+	\item Upper garments are garments worn over the torso 
+	\begin{equation*}
+		\forall x \forall y \; upperGarment(x) \equiv garment(x) \land torso(y) \land worn\_over(x,y)
+	\end{equation*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+	 (all x all y
+	 (upperGarment(x) 
+	 <-> 
+	 (garment(x) & torso(y) & worn_over(x,y)))). 
+	\end{Verbatim}
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	
+	\item Footwear are garments worn over the feet 
+	\begin{equation*}
+		\forall x \forall y \; footwear(x) \equiv garment(x) \land feet(y) \land worn\_over(x,y)
+	\end{equation*}
+	%Prover9
+	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+	 (all x all y
+	 (upperGarment(x) 
+	 <-> 
+	 (garment(x) & feet(y) & worn_over(x,y)))). 
 	\end{Verbatim}
 
 	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -472,32 +634,11 @@
 	
 	\end{enumerate}
 
-\subsubsection{Inverse Property}
+%\subsubsection{Inverse Property}
+\clearpage
 
+\subsection{Unsorted or Rejected}
 \begin{enumerate}
-
-\item All outfits are composed of garments of clothing
-\begin{equation*}
-	\forall(x) \; outfit(x) \supset \exists x \; garment(x) \land garment\_of(outfit)
-\end{equation*}
-\begin{equation*}
-	\text{Garment} \sqsubseteq \exists \text{garment-of.Outfit}
-\end{equation*}
-
-\item An outfit must contain some garment that wornOver the legs, some garment that wornOver the feet and some garment that wornOver the torso
-%\begin{equation*}
-%	\forall(x) \; outfit(x) \supset \exists x \; garment(x) \land garment\_of(outfit)
-%\end{equation*}
-\begin{equation*}
-	\text{Outfit} \sqsubseteq \forall (\exists \text{will-cover.Torso} \sqcup \exists \text{will-cover.Legs} \sqcup \exists \text{will-cover.Feet})
-\end{equation*}
-
-\end{enumerate}
-
-
-
-\begin{enumerate}
-
 %\item If an outfit has an garment of clothing that wornOver the legs and an garment of clothing that wornOver the torso and the garments are of the same type then the garments are the same
 %\begin{equation*}
 %\begin{corollary}
@@ -516,7 +657,6 @@
 \begin{equation*}
 	\forall(w,x,y,z) \; (garment(w) \land outfit(x) \land garmentOf(x,y) \land type(z) \land of\_type(w,z) \supset garmentOf(z,x))
 \end{equation*}
-
 
 \item No type of clothing can be a type of itself
 \begin{equation*}
@@ -553,22 +693,11 @@
 	\end{split}
 \end{equation*}
 
-\item All outfits with socks must have shoes
-\begin{equation*}
-	\forall(x,y) \; (socks(x) \land outfit(y) \land garmentOf(x,y) \supset (\exists z \; shoes(z) \land garmentOf(x,y)))
-\end{equation*}
+%\item All outfits with socks must have shoes
+%\begin{equation*}
+%	\forall(x,y) \; (socks(x) \land outfit(y) \land garmentOf(x,y) \supset (\exists z \; shoes(z) \land garmentOf(x,y)))
+%\end{equation*}
 
-\item All outfits with jackets must be accompanied with another garment of clothing covering the torso
-\begin{equation*}
-	\begin{split}
-	\forall(x,y,z) \; (jacket(x) \land outfit(y) \land garmentOf(x,y) \land torso(z) \supset \\ (\exists w \; garment(w) \land wornOver(w,z) \land garmentOf(w,y)))
-	\end{split}
-\end{equation*}
-
-\item All garments of clothing have a color.
-\begin{equation*}
-	\forall(x) \; (clothing(x) \supset \exists y \; color(y) \land has\_color (x,y))
-\end{equation*}
 
 \item Dresses cover the legs and torso
 \begin{equation*}
@@ -605,11 +734,6 @@
 \item All garments of clothing of type blouse are appropriate for women.
 \begin{equation*}
 	\forall(x,y,z) \; (garment(x) \land blouse(y) \land of\_type(x,y) \land women(z) \supset gender\_appr(x,z)) 
-\end{equation*}
-
-\item All two-piece suits consist of pants and a jacket of the same color
-\begin{equation*}
-	\forall(x) twoPieceSuit(x) \supset \exists y \exists z \exists c \; pants(y) \land jacket(z) \land color(c) \land has\_color(y,c) \land has\_color(z,c)
 \end{equation*}
 
 %\item Women's shoes are an garment of clothes of type shoes for females

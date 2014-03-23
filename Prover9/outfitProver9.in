@@ -12,17 +12,74 @@ end_if.
 
 formulas(assumptions).
 
+%	EXISTENTIAL
+%-------------------------------
+
+(exists x (eveningGown(x) 			-> dress(x))).
+(exists x (dinnerParty(x)	 		-> informalOccasion(x))).
+(exists x (businessMeeting(x)	 	-> informalOccasion(x))).
+(exists x (theatreOpeningNight(x) 	-> semiFormalOccasion(x))).
+(exists x (charityBall(x) 			-> semiFormalOccasion(x))).
+(exists x (stateDinner(x) 			-> formalOccasion(x))).
+(exists x (wedding(x) 				-> formalOccasion(x))).
+
 %   SUBCLASS AXIOMS
 %--------------------------------
 
-% If something is male it is a gender
-(all x (male(x) -> gender(x))).
+(all x (female(x) 				-> gender(x))).
+(all x (male(x) 				-> gender(x))).
+(all x (jacket(x) 				-> accompanimentGarment(x))).
+(all x (neckApparel(x) 			-> accompanimentGarment(x))).
+(all x (setOfGarments(x)		-> clothing(x))).
+(all x (mensSuit(x)				-> setOfGarments(x))).
+(all x (feminineSuit(x)			-> setOfGarments(x))).
+(all x (individualGarment(x) 	-> clothing(x))).
 
-% If something is female it is a gender
-(all x (female(x) -> gender(x))).
+%   DEPENDENCE AXIOMS
+%--------------------------------
+
+% All outfits include a garment that is worn over the torso and is not an accompaniment garment
+	(all x all y 
+	(outfit(x) & torso(y))
+	-> 
+	(exists z (garment(z) & worn_over(z,y) & component_of(z,x) & -accompanimentGarment(z)))).
+
+% All outfits include a garment that is worn over the legs and is not an accompaniment garment
+	(all x all y 
+	(outfit(x) & legs(y))
+	-> 
+	(exists z (garment(z) & worn_over(z,y) & component_of(z,x) & -accompanimentGarment(z)))).
+
+% All outfits include a garment that is worn over the torso and is not an accompaniment garment
+	(all x all y 
+	(outfit(x) & feet(y))
+	-> 
+	(exists z (garment(z) & worn_over(z,y) & component_of(z,x) & -accompanimentGarment(z)))).
+
+%All mens suits consist of pants and a jacket of the same color
+	(all x 
+	(mensSuit(x)
+	-> 
+	(exists y exists z (mensPants(y) & mensJacket(z) & color(c) & dyed(y,c) 
+	& dyed(z,c))))).
+
+%All garments are dyed a color
+	(all x 
+	(garment(x)) 
+	-> 
+	(exists c (color(c) & dyed(x,c)))).
+	
+%All garments have a targeted gender
+	(all x 
+	(garment(x)) 
+	-> 
+	(exists y (gender(y) & targeted-to(x,y)))).
 
 %   DEFINITIONS
 %--------------------------------
+
+% Garment Definitions
+%- - - - - - - - - - - - - - - - - - - - 
 
 % Women's garments are garments targeted to females 
 (all x all y 
@@ -36,8 +93,41 @@ formulas(assumptions).
 <-> 
 (garment(x) & male(y) & targeted_to(x,y)))). 
 
+% Women's outfits are outfits worn by females
+(all x all y 
+(womensOutfit(x) 
+<-> 
+(outfit(x) & female(z) & targeted_to(x,y)))). 
+
+% Mens's outfits are outfits worn by males
+(all x all y 
+(mensOutfit(x) 
+<-> 
+(outfit(x) & male(z) & targeted_to(x,y)))). 
+
 % Men's garments are not women's garments
 (all x (mensGarment(x) <-> -womensGarments(x))).
+
+%Lower garments are garments worn over the legs 
+(all x all y
+(lowerGarment(x) 
+<-> 
+(garment(x) & legs(y) & worn_over(x,y)))). 
+
+%Upper garments are garments worn over the torso 
+(all x all y
+(upperGarment(x) 
+<-> 
+(garment(x) & torso(y) & worn_over(x,y)))). 
+
+%Footwear are garments worn over the feet 
+(all x all y
+(footwear(x) 
+<-> 
+(garment(x) & feet(y) & worn_over(x,y)))). 
+
+% Outfit Definitions
+%- - - - - - - - - - - - - - - - - - - - 
 
 % A formal outfit is an outfit that conform to a formal dress code
 (all x all y 
@@ -96,11 +186,11 @@ formulas(assumptions).
 % Garments are targeted to genders
 (all x all y (targeted_to(x,y))->(garment(x) & gender(y))).
 
-% Garments are worn over garments
-(all x all y (worn_over(x,y))->(garment(x) & garment(y))).
+% Garments are worn over things
+(all x all y (worn_over(x,y))->(garment(x))).
 
 % Garments are worn under garments
-(all x all y (worn_under(x,y))->(garment(x) & garment(y))).
+%(all x all y (worn_under(x,y))->(garment(x) & garment(y))).
 
 % Garments cover body segments
 (all x all y (cover(x,y))->(garment(x) & bodySegment(y))).
@@ -125,7 +215,7 @@ formulas(assumptions).
 (all x all y (include(x,y) <-> components_of(y,x))).
 (all x all y (permits(x,y) <-> suitable(y,x))).
 (all x all y (governs(x,y) <-> components_of(y,x))).
-(all x all y (worn_over(x,y) <-> worn_under(y,x))).
+%(all x all y (worn_over(x,y) <-> worn_under(y,x))).
 (all x all y (covers(x,y) <-> covered_by(y,x))).
 
 %   SubProperty of Relation Chain
@@ -147,8 +237,7 @@ formulas(assumptions).
 %   Transitive Relations
 %- - - - - - - - - - - - - - - -  - - - - - - 
 
-% If a garment A is worn over garment B and garment B is worn over garment C then garment A 
-% is worn over garment C
+% worn_over is a transitive relation
 
 (all x all y all z
 (worn_over(x,y) & worn_over(y,z))
