@@ -24,16 +24,29 @@ formulas(assumptions).
 (exists x (wedding(x) 				-> formalOccasion(x))).
 
 %   SUBCLASS AXIOMS
-%--------------------------------
+%------------------------------------
+%Value Partition
+%- - - - - - - - - - - - - - - - - - - - - - - - 
+(all x (woman(x) 				-> gender(x))).
+(all x (man(x) 					-> gender(x))).
 
-(all x (female(x) 				-> gender(x))).
-(all x (male(x) 				-> gender(x))).
-(all x (jacket(x) 				-> accompanimentGarment(x))).
-(all x (neckApparel(x) 			-> accompanimentGarment(x))).
-(all x (setOfGarments(x)		-> clothing(x))).
-(all x (mensSuit(x)				-> setOfGarments(x))).
-(all x (feminineSuit(x)			-> setOfGarments(x))).
+%Domain Concept
+%- - - - - - - - - - - - - - - - - - - - - - - - 
 (all x (individualGarment(x) 	-> clothing(x))).
+	(all x (accompanimentGarment(x)	-> individualGarment(x))).
+		(all x (jacket(x) 				-> accompanimentGarment(x))).
+		(all x (neckApparel(x) 			-> accompanimentGarment(x))).
+	(all x (footwear(x)			-> individualGarment(x))).
+	(all x (lowerGarment(x)		-> individualGarment(x))).
+	(all x (upperGarment(x)		-> individualGarment(x))).
+(all x (suit(x)					-> clothing(x))).
+	(all x (mensSuit(x)				-> setOfGarments(x))).
+		(all x (threePieceSuit(x)		-> mensSuit(x))).
+		(all x (twoPieceSuit(x)			-> mensSuit(x))).
+	(all x (feminineSuit(x)			-> setOfGarments(x))).
+		(all x (dressSuit(x)			-> feminineSuit(x))).
+		(all x (skirtSuit(x)			-> feminineSuit(x))).
+		(all x (pantSuit(x)				-> feminineSuit(x))).
 
 %   DEPENDENCE AXIOMS
 %--------------------------------
@@ -81,29 +94,29 @@ formulas(assumptions).
 % Garment Definitions
 %- - - - - - - - - - - - - - - - - - - - 
 
-% Women's garments are garments targeted to females 
+% Women's garments are garments targeted to womans 
 (all x all y 
 (womensGarment(x) 
 <-> 
-(garment(x) & female(z) & targeted_to(x,y)))). 
+(garment(x) & woman(z) & targeted_to(x,y)))). 
 
-% Men's garments are garments targeted to males
+% Men's garments are garments targeted to mans
 (all x all y 
 (mensGarment(x) 
 <-> 
-(garment(x) & male(y) & targeted_to(x,y)))). 
+(garment(x) & man(y) & targeted_to(x,y)))). 
 
-% Women's outfits are outfits worn by females
+% Women's outfits are outfits worn by womans
 (all x all y 
 (womensOutfit(x) 
 <-> 
-(outfit(x) & female(z) & targeted_to(x,y)))). 
+(outfit(x) & woman(z) & targeted_to(x,y)))). 
 
-% Mens's outfits are outfits worn by males
+% Mens's outfits are outfits worn by mans
 (all x all y 
 (mensOutfit(x) 
 <-> 
-(outfit(x) & male(z) & targeted_to(x,y)))). 
+(outfit(x) & man(z) & targeted_to(x,y)))). 
 
 % Men's garments are not women's garments
 (all x (mensGarment(x) <-> -womensGarments(x))).
@@ -150,8 +163,8 @@ formulas(assumptions).
 %   DISJOINTNESS AXIOMS
 %---------------------------------
 
-% If something is targeted to a male it is not targeted to a female
-% (all x all y all z (male(x) & female(y) & targeted_to(z,x) -> -targeted_to(f)
+% If something is targeted to a man it is not targeted to a woman
+% (all x all y all z (man(x) & woman(y) & targeted_to(z,x) -> -targeted_to(f)
 
 %   SORT CONSTRAINTS
 %--------------------------------
@@ -249,7 +262,7 @@ end_of_list.
 formulas(goals).
 
 (exists w exists x exists y exists z 
-(eveningGown(w) & theatreOpeningNight(x) & female(y) & garment_of(w,z))
+(eveningGown(w) & theatreOpeningNight(x) & woman(y) & garment_of(w,z))
 ->
 (has_genderDes(x,y) & is_eventAppropriate(z,x))).
 

@@ -46,7 +46,7 @@
 \numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 
-\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+%\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -69,9 +69,77 @@
 \begin{document}
 
 \section{Domain}
-Our ontology wishes to explore the domain of western dress codes and the way in which they govern outfits by imposing a set of rules on the items of clothing they include. 
+Our ontology wishes to explore the domain of western dress codes and the way in which they govern outfits. Dress codes are written, and more often, unwritten sets of rules that regulate the types of clothing and the specifications of the clothing to be worn to different occasions and events. A classification of these codes is normally made for varying levels of formality of the occasion and times of day the event is held. 
 
-\section{Competency Questions}
+Western dress codes, albeit a by-product of Western Culture (which in itself can be perceived as very diverse), will be assumed to relate to the rather sweeping notion of western dress that permeates much of the world today. 
+
+As previously mentioned dress codes encompass many unwritten rules. These unwritten rules result from the influences on dress codes by societal norms of the respective time period. We will assume that the dress codes being codified in our axioms are more or less pertinent to present day but acknowledge the chance for their possible antiquity. Some notable  instances of arguable rules of dress include the distinction between formal and semi-formal wear and the level of formality of a dress and skirt's hem length. 
+
+To exercise the effectiveness of our ontology and to accommodate certain use-cases, our ontology will include a brief selection of occasion instances which will be designated specifically one formality. How certain events and occasions are perceived for their formality is greatly influenced by the cultural norms of the persons hosting the event (which deems worthy an ontology in itself). Therefore, event instances included in our ontology will be extremely general and absent of any cultural specificity.
+
+A distinction must be made between a dress code and what is fashionable. We acknowledge that elements of fashion of any time period do affect a dress code. However, we will largely ignore the elements of an item of clothing that may or may not be fashionable present day. Therefore we will only address rules of dress that go as far as what can be said has been a fashion constant of the past several decades e.g. A dark colored/neutral colored men's suit and it's formality dependent variations have more or less been the norm for men for events ranging from informal to formal for the past several decades.
+
+\section{Motivating Scenarios}
+The motivating scenario for the development of the ecommerce outfit assembly ontology is to provide a software agent the knowledge required to assemble acceptable outfits for different events and occasions from clothing available through online product catalogues. Via the ontology a software agent could discern between clothing items in a product catalogue on characteristics of formality and targeted gender. The aggregated product information can subsequently be interpreted to build product sets that form complete and logical outfit selections that match the requirements of the user of the software agent.
+
+%commonly understood clothing terms when extracting and structuring product information obtained when parsing the text of product descriptions in their respective catalogues. 
+%The ontology can be used to understand the principles of building logical outfits that conform to western dress codes for each gender.
+
+The ontology can be extended with other ecommerce ontologies to allow a software agent to pair product catalogue selections with details of product availability (in size), costs and the proximity of origin of shipment of the clothing articles. This would be done for the purposes of building outfit selections that match the customers requirements in size, style, fastest and/or cheapest shipping options, all within his or her specified budget.
+\subsection{Use Case 1}
+A female person receives an invite to a charity ball dinner and would like to search her favorite ecommerce clothing websites to know what are her clothing options available for purchase that she can wear in attendance to the function.
+
+\subsection{Use Case 2}
+A male diplomat is attending a state dinner and would like to know what are his clothing options and what is the nearest clothing store that sells the required garments to complete the outfit.
+
+\subsection{Use Case 3}
+A female person has a wardrobe of dresses and skirts she can wear to her first day at work in the downtown bank tower. She is most likely to be introduced to a number of her coworkers and attend a meeting. She wants to know which dresses or skirts are acceptable options that can be included in a business appropriate outfit for the occasion. 
+
+\subsection{Use Case 4}
+The same woman from Use Case 3 realizes that her current wardrobe offers a limited number of clothing options to be worn to work. She fears she won't get through the week without having to wear some outfits to work a second time. She searches her favorite online retailers for new garments that can be purchased to fill the gap that match her requirements.
+
+
+\section{Informal Competency Questions}
+There is a consistent pattern to the types of questions of which the use cases present and the ontology would like to resolve.
+
+\begin{enumerate}
+	\item What is the implied formality of a specified occasion and what type of clothing conform to the rules of the dress code associated with the respective formality of the event and the gender of the person?
+		\begin{enumerate}[label*=\arabic*.]
+			\item Is an evening gown suitable to a casual dinner party in one is a woman?
+			\item If one is a man, is a tuxedo appropriate when attending the wedding of your best business client's son?
+			\item Is a business suit appropriate when attending a state dinner if a man?
+		\end{enumerate}
+	\item Given a selection of clothing, are there rules on how the items of clothing must be paired together governed by the dress code?
+		\begin{enumerate}[label*=\arabic*.]
+			\item Can the articles of a men's semi-formal suit consist of pieces sewn from different fabrics?
+			\item Can both a a dress and a blouse considered business attire on their own be worn together in the same informal outfit?
+		\end{enumerate}
+	\item Given a set of options of clothing by type, what are some unique restrictions on specific types of clothing that would govern their acceptance at a formal occasion, a semiformal occasion or an informal occasion?
+	\begin{enumerate}[label*=\arabic*.]
+		\item What are the hem lengths acceptable for a woman's dress when attending a formal function.
+		\item What are the hem lengths acceptable for a woman's skirt when worn as a skirt suit when going to work in a traditional office.
+		\item What are the color options for a man's suit at an informal occasion.
+	\end{enumerate}
+\end{enumerate}
+
+Albeit not directly stated in the use cases, there are a number of questions that can be extended from those listed above.
+\begin{enumerate}
+	\item What is the absolute minimum required types of clothing to complete any outfit?
+	\item What parts of the body must be covered to consider an outfit complete?
+	\item Which types of clothes cover which parts of the body?
+	\item How and in what sequence are certain types of clothes worn when worn together?
+\end{enumerate}
+
+\section{Signature}
+\subsection{Classes}
+\begin{itemize}
+	\item DomainConcepts
+\end{itemize}
+\subsection{Relations}
+\begin{enumerate}
+	\item[dyed]
+\end{enumerate}
+\section{Formalized Competency Questions}
 \begin{enumerate}
 
 	\item Is an evening gown part of an outfit that is appropriate for an opening night theatre performance if one is a female?
@@ -92,20 +160,20 @@ Our ontology wishes to explore the domain of western dress codes and the way in 
 	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
 	\item Does a dress and shoes alone complete a business outfit?
-	\begin{equation*}
-		\begin{split}
-		\forall x \forall y \forall z \; dress(x) \land shoes(y) \land outfit(z) \land garment\_of(x,z) \land garment\_of(y,z) \supset \\ 
-		outfit(z)
-		\end{split}
-	\end{equation*}
-	%Prover9
-	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
-		(all x all y all z
-		(dress(x) & shoes(y) & outfit(z) & garment_of(x,z) & garment_of(y,z))
-		->
-		(businessOutfit(z)).
-	\end{Verbatim}
-
+%	\begin{equation*}
+%		\begin{split}
+%		\forall x \forall y \forall z \; dress(x) \land shoes(y) \land outfit(z) \land garment\_of(x,z) \land garment\_of(y,z) \supset \\ 
+%		outfit(z)
+%		\end{split}
+%	\end{equation*}
+%	%Prover9
+%	\begin{Verbatim}[frame=lines,gobble=2,numbers=left]
+%		(all x all y all z
+%		(dress(x) & shoes(y) & outfit(z) & garment_of(x,z) & garment_of(y,z))
+%		->
+%		(businessOutfit(z)).
+%	\end{Verbatim}
+%
 	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
 	\item Does a jacket, pants and shoes comprise a complete mens outfit?
@@ -141,15 +209,15 @@ Our ontology wishes to explore the domain of western dress codes and the way in 
 
 	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
-	\item Can a man wear a men's suit without a tie?
+	\item Can a man wear a men's suit without a tie to a business meeting?
 	
 	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
-	\item Must one where men's neck apparel to a semi-formal event?
+	\item Must a man where men's neck apparel to a semi-formal event?
 
 	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
-	\item Is a red colored suit considered formal wear?
+	\item Is a red colored suit suitable to worn to a charity ball?
 
 	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
 		
@@ -184,6 +252,20 @@ Our ontology wishes to explore the domain of western dress codes and the way in 
 		->
 		(suitable(y,z)).
 	\end{Verbatim}
+	
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 	
+	
+	\item Can a woman where a dress above the knee hemline to a semi-formal event?
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+	\item Can an evening gown be included in a dress suit?
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	\item Can a skirt suit include a skirt with a mid thigh hemline to a business meeting?
+
+	%- - - - - - - - - - - - - - - - - - - - - - - - - - -
 	
 \end{enumerate}
 \clearpage
